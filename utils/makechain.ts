@@ -2,6 +2,7 @@ import { OpenAI } from 'langchain/llms/openai';
 import { PineconeStore } from 'langchain/vectorstores/pinecone';
 import { ConversationalRetrievalQAChain } from 'langchain/chains';
 
+// Dada la siguiente conversación y una pregunta de seguimiento, reformula la pregunta de seguimiento para que sea una pregunta independiente.
 const CONDENSE_PROMPT = `Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
 
 Chat History:
@@ -20,8 +21,8 @@ Helpful answer in markdown:`;
 
 export const makeChain = (vectorstore: PineconeStore) => {
   const model = new OpenAI({
-    temperature: 0, // increase temepreature to get more creative answers
-    modelName: 'gpt-3.5-turbo', //change this to gpt-4 if you have access
+    temperature: 0, // Aumenta la temperatura para obtener respuestas más creativas
+    modelName: 'gpt-3.5-turbo', //Tipo de modelo
   });
 
   const chain = ConversationalRetrievalQAChain.fromLLM(
@@ -30,7 +31,7 @@ export const makeChain = (vectorstore: PineconeStore) => {
     {
       qaTemplate: QA_PROMPT,
       questionGeneratorTemplate: CONDENSE_PROMPT,
-      returnSourceDocuments: true, //The number of source documents returned is 4 by default
+      returnSourceDocuments: true, //El número de documentos fuente devueltos es 4 de manera predeterminada.
     },
   );
   return chain;

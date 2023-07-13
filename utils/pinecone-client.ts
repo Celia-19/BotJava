@@ -1,7 +1,7 @@
 import { PineconeClient } from '@pinecone-database/pinecone';
 
 if (!process.env.PINECONE_ENVIRONMENT || !process.env.PINECONE_API_KEY) {
-  throw new Error('Pinecone environment or api key vars missing');
+  throw new Error('Falta la variable de entorno o la clave de API de Pinecone.');
 }
 
 async function initPinecone() {
@@ -9,7 +9,7 @@ async function initPinecone() {
     const pinecone = new PineconeClient();
 
     await pinecone.init({
-      environment: process.env.PINECONE_ENVIRONMENT ?? '', //this is in the dashboard
+      environment: process.env.PINECONE_ENVIRONMENT ?? '', //Esto está en el panel de control.
       apiKey: process.env.PINECONE_API_KEY ?? '',
     });
 

@@ -1,4 +1,8 @@
 
-## Run the app
+## Correr el arcivo
 
-Once you've verified that the embeddings and content have been successfully added to your Pinecone, you can run the app `npm run dev` 
+ `npm run dev` 
+
+ ## Cuando se agregue nuevo arcivo
+ Recuerda que cuando se agregue un nuevo pdf en docs debemes de correr el siguiente comando  `npm run dev` 
+ 

@@ -25,7 +25,7 @@ export default function Home() {
   }>({
     messages: [
       {
-        message: 'Hi, what would you like to learn about this document?',
+        message: 'Hola soy un bot de Wendy, estoy aquí para apoyarte con tus dudas de manuales ¿Cual es tu duda?',
         type: 'apiMessage',
       },
     ],
@@ -41,14 +41,14 @@ export default function Home() {
     textAreaRef.current?.focus();
   }, []);
 
-  //handle form submission
+  //Manejar el envío del formulario.
   async function handleSubmit(e: any) {
     e.preventDefault();
 
     setError(null);
 
     if (!query) {
-      alert('Please input a question');
+      alert('Por favor, ingresa una pregunta.');
       return;
     }
 
@@ -102,16 +102,16 @@ export default function Home() {
 
       setLoading(false);
 
-      //scroll to bottom
+      //Desplazarse hasta el final.
       messageListRef.current?.scrollTo(0, messageListRef.current.scrollHeight);
     } catch (error) {
       setLoading(false);
-      setError('An error occurred while fetching the data. Please try again.');
+      setError('Se produjo un error al obtener los datos. Por favor, inténtalo de nuevo.');
       console.log('error', error);
     }
   }
 
-  //prevent empty submissions
+  //Evitar envíos vacíos.
   const handleEnter = (e: any) => {
     if (e.key === 'Enter' && query) {
       handleSubmit(e);
@@ -125,7 +125,7 @@ export default function Home() {
       <Layout>
         <div className="mx-auto flex flex-col gap-4">
           <h1 className="text-2xl font-bold leading-[1.1] tracking-tighter text-center">
-            Chat With Your Docs
+            ChatBot Wendy
           </h1>
           <main className={styles.main}>
             <div className={styles.cloud}>
@@ -137,10 +137,10 @@ export default function Home() {
                     icon = (
                       <Image
                         key={index}
-                        src="/bot-image.png"
+                        src="/W.png"
                         alt="AI"
-                        width="40"
-                        height="40"
+                        width="60"
+                        height="60"
                         className={styles.boticon}
                         priority
                       />
@@ -158,7 +158,7 @@ export default function Home() {
                         priority
                       />
                     );
-                    // The latest message sent by the user will be animated while waiting for a response
+                    // El último mensaje enviado por el usuario se animará mientras se espera una respuesta.
                     className =
                       loading && index === messages.length - 1
                         ? styles.usermessagewaiting
@@ -224,7 +224,7 @@ export default function Home() {
                     placeholder={
                       loading
                         ? 'Waiting for response...'
-                        : 'What is this legal case about?'
+                        : '¿Como puedo tener limpio mi lugar de trabajo?'
                     }
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
@@ -240,7 +240,7 @@ export default function Home() {
                         <LoadingDots color="#000" />
                       </div>
                     ) : (
-                      // Send icon SVG in input field
+                      // Icono de envío (SVG) en el campo de entrada.
                       <svg
                         viewBox="0 0 20 20"
                         className={styles.svgicon}
@@ -261,8 +261,8 @@ export default function Home() {
           </main>
         </div>
         <footer className="m-auto p-4">
-          <a href="https://twitter.com/mayowaoshin">
-            Powered by LangChainAI. Demo built by Mayo (Twitter: @mayowaoshin).
+          <a href="">
+            Proyecto realizado con LangChainAI. Demo realisado en junio 2023 .
           </a>
         </footer>
       </Layout>

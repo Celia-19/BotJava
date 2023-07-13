@@ -13,7 +13,7 @@ export default async function handler(
 
   console.log('question', question);
 
-  //only accept post requests
+  //solo se aceptan solicitudes POST
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
@@ -22,25 +22,25 @@ export default async function handler(
   if (!question) {
     return res.status(400).json({ message: 'No question in the request' });
   }
-  // OpenAI recommends replacing newlines with spaces for best results
+  // OpenAI recomienda reemplazar los saltos de línea por espacios para obtener mejores resultados.
   const sanitizedQuestion = question.trim().replaceAll('\n', ' ');
 
   try {
     const index = pinecone.Index(PINECONE_INDEX_NAME);
 
-    /* create vectorstore*/
+    /* crear vectorstore*/
     const vectorStore = await PineconeStore.fromExistingIndex(
       new OpenAIEmbeddings({}),
       {
         pineconeIndex: index,
         textKey: 'text',
-        namespace: PINECONE_NAME_SPACE, //namespace comes from your config folder
+        namespace: PINECONE_NAME_SPACE, //El espacio de nombres proviene de la carpeta de configuración.
       },
     );
 
-    //create chain
+    //crear cadena
     const chain = makeChain(vectorStore);
-    //Ask a question using chat history
+    //Haz una pregunta utilizando el historial de chat.
     const response = await chain.call({
       question: sanitizedQuestion,
       chat_history: history || [],
